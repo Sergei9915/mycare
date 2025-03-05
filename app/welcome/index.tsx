@@ -29,13 +29,13 @@ const WelcomeScreen = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => router.replace('/login')}
+            onPress={() => router.push('/login')}
           >
             <Text style={styles.loginText}>Вхід</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.registerButton}
-            onPress={() => router.replace('/sign-up')}
+            onPress={() => router.push('/register')}
           >
             <Text style={styles.registerText}>Реєстрація</Text>
           </TouchableOpacity>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   loginButton: {
     width: width * 0.9,
     backgroundColor: '#40744D',
-    paddingVertical: 16,
+    paddingVertical: 20,
     borderRadius: 35,
     alignItems: 'center',
     marginBottom: 15,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     borderColor: '#40744D',
     borderWidth: 1.3,
-    paddingVertical: 16,
+    paddingVertical: 20,
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',

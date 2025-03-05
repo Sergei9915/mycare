@@ -11,7 +11,7 @@ export default function Dots({
   total,
 }: DotsProps): React.JSX.Element {
   return (
-    <View style={styles.dotContainer}>
+    <View style={styles.container}>
       {Array.from({ length: total }).map((_, index) => (
         <View
           key={index.toString()}
@@ -23,7 +23,7 @@ export default function Dots({
 }
 
 const styles = StyleSheet.create({
-  dotContainer: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     top: '77%',
   },
   dot: {
-    width: 7,
-    height: 7,
+    width: 8,
+    height: 8,
     borderRadius: 5,
     backgroundColor: '#40744D',
     marginHorizontal: 7,

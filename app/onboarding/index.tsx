@@ -1,18 +1,11 @@
 import React, { useRef, useState } from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { useRouter } from 'expo-router';
 import { ONBOARDING } from '@/data/onboarding';
-import Dots from '@/components/dots';
-
-const { width, height } = Dimensions.get('window');
+import Dots from '@/components/Dots';
+import Slide from '@/components/Slide';
+import Button from '@/components/Button';
 
 export default function OnboardingScreen() {
   const pagerRef = useRef<PagerView>(null);
@@ -28,7 +21,6 @@ export default function OnboardingScreen() {
   };
 
   const onPageSelected = (event: any) => {
-    console.log(event.nativeEvent.position);
     setCurrentIndex(event.nativeEvent.position);
   };
 
@@ -41,32 +33,21 @@ export default function OnboardingScreen() {
         onPageSelected={onPageSelected}
       >
         {ONBOARDING.map(item => (
-          <View key={item.id}>
-            <ImageBackground
-              source={item.img}
-              style={styles.image}
-              resizeMode="cover"
-            >
-              <View style={styles.contentContainer}>
-                <Text numberOfLines={2} style={styles.title}>
-                  {item.title}
-                </Text>
-                <Text numberOfLines={2} style={styles.text}>
-                  {item.text}
-                </Text>
-              </View>
-            </ImageBackground>
-          </View>
+          <Slide
+            key={item.id}
+            title={item.title}
+            text={item.text}
+            img={item.img}
+          />
         ))}
       </PagerView>
 
       <Dots currentIndex={currentIndex} total={ONBOARDING.length} />
 
-      <TouchableOpacity style={styles.button} onPress={handleContinue}>
-        <Text style={styles.buttonText}>
-          {currentIndex === 3 ? 'Почати' : 'Продовжити'}
-        </Text>
-      </TouchableOpacity>
+      <Button
+        title={currentIndex === 3 ? 'Почати' : 'Продовжити'}
+        onPress={handleContinue}
+      />
     </View>
   );
 }
@@ -81,45 +62,5 @@ const styles = StyleSheet.create({
   pagerView: {
     flex: 1,
     width: '100%',
-  },
-  image: {
-    width: width,
-    height: height * 0.55,
-    resizeMode: 'cover',
-  },
-  contentContainer: {
-    position: 'absolute',
-    top: '95%',
-    alignItems: 'center',
-    width: '100%',
-  },
-  title: {
-    fontSize: 27,
-    lineHeight: 37,
-    marginBottom: 16,
-    fontFamily: 'NotoSansBold',
-    textAlign: 'center',
-    width: '60%',
-  },
-  text: {
-    fontSize: 18,
-    lineHeight: 25,
-    color: '#575757',
-    fontFamily: 'NotoSansRegular',
-    textAlign: 'center',
-  },
-  button: {
-    marginBottom: 70,
-    width: width * 0.9,
-    backgroundColor: '#40744D',
-    paddingVertical: 16,
-    borderRadius: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '500',
   },
 });
