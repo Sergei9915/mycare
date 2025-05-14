@@ -11,13 +11,16 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mycare.firebase",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#DBEEE0"
-      }
+      },
+      "package": "com.mycare.firebase"
     },
     "plugins": [
       "expo-router",
@@ -41,6 +44,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "60c19298-0dcd-4680-9f40-77244b9eddc0"
+      }
     }
   }
 }
